@@ -1,5 +1,4 @@
 output := dak_math.h
-files := src/types.h src/constants.h src/operators.h src/functions.h
 COMMIT_SHA1 := $(shell git rev-parse --short HEAD)
 DATE := $(shell date +"%m-%d-%y")
 LICENSE := $(shell cat LICENSE | tr '\n' '\1')
@@ -19,12 +18,21 @@ $(LICENSE)									\1
 #define _DAK_MATH_H							\1
 endef
 
+build: head types.h constants.h operators.h functions.h tail
+
 HEAD_INFO_ENCODED := $(shell echo "$(HEAD_INFO)" |  tr '\n' '\1')
-build:
+head:
 	@echo "$(HEAD_INFO_ENCODED)" | tr '\1' '\n' > $(output)
-	@cat $(files) >> $(output)
+tail:
 	@echo "\n#endif" >> $(output)
 
-compile: build
+%.h:
+	@echo "\n\n// $@ \n" >> $(output)
+	@cat src/$@ >> $(output)
+
+
+check: build
 	g++ $(output)
 
+clean: 
+	rm dak_math.h dak_math.h.gch
