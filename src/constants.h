@@ -1,20 +1,17 @@
-// CONSTANSTS INITIALIZATION
+#define VEC2_ZERO   vec2( 0, 0)
+#define VEC2_ONE    vec2( 1, 1)
+#define VEC2_LEFT   vec2(-1, 0)
+#define VEC2_RIGHT  vec2( 1, 0)
+#define VEC2_UP     vec2( 0, 1)
+#define VEC2_DOWN   vec2( 0,-1)
 
+#define VEC3_ZERO   vec3( 0, 0, 0)
+#define VEC3_ONE    vec3( 1, 1, 1)
+#define VEC3_LEFT   vec3(-1, 0, 0)
+#define VEC3_RIGHT  vec3( 1, 0, 0)
+#define VEC3_UP     vec3( 0, 1, 0)
+#define VEC3_DOWN   vec3( 0,-1, 0)
+#define VEC3_FRONT  vec3( 0, 0, 1)
+#define VEC3_BACK   vec3( 0, 0,-1)
 
-const vec2 vec2::one	= vec2(1, 1);
-const vec2 vec2::left	= vec2(-1, 0);
-const vec2 vec2::right	= vec2(1, 0);
-const vec2 vec2::up		= vec2(0, 1);
-const vec2 vec2::down 	= vec2(0, -1);
-
-
-const vec3 vec3::one	= vec3(1, 1, 1);
-const vec3 vec3::left	= vec3(-1, 0, 0);
-const vec3 vec3::right	= vec3(1, 0, 0);
-const vec3 vec3::up 	= vec3(0, 1, 0);
-const vec3 vec3::down	= vec3(0, -1, 0);
-const vec3 vec3::front	= vec3(0, 0, 1);
-const vec3 vec3::back	= vec3(0, 0, -1);
-
-
-const vec4 vec4::identity = vec4(0, 0, 0, 1);
+#define VEC4_IDENTITY vec4(0, 0, 0, 1)

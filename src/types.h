@@ -6,6 +6,7 @@ struct vec2 {
 	vec2() : x{0}, y{0} {}
 	vec2(float f) : x{f}, y{f} {}
 	vec2(float x, float y) : x{x}, y{y} {}
+	
 
 	static const vec2 zero, one, left, right, up, down;
 };

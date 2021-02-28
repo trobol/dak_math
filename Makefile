@@ -32,7 +32,7 @@ tail:
 
 
 check: build
-	g++ $(output)
+	g++ -std=c++11 -Werror test/test.cpp test/linker.cpp
 
 clean: 
-	rm dak_math.h dak_math.h.gch
+	rm dak_math.h dak_math.h.gch a.out
