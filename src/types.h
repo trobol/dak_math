@@ -1,7 +1,4 @@
-struct vec2;
-struct vec3;
-struct vec4;
-
+// TYPE DECLARATIONS
 
 struct vec2 {
 	float x, y;
@@ -25,7 +22,7 @@ struct vec3
 	static vec3 cross(const vec3 &a, const vec3 &b);
 
 	// CONSTANTS DECLARATION
-	static const vec3 zero, one, left, right, up, down, forwards, back;
+	static const vec3 zero, one, left, right, up, down, front, back;
 };
 
 struct vec4 {
