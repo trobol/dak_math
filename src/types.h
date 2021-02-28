@@ -1,4 +1,5 @@
 // TYPE DECLARATIONS
+#include <cmath>
 
 struct vec2 {
 	float x, y;
@@ -15,11 +16,6 @@ struct vec3
 	float x, y, z;
 	vec3() : x{0}, y{0}, z{0} {}
 	vec3(float x, float y, float z) : x{x}, y{y}, z{z} {};
-
-	
-	// STATIC FUNCTIONS
-	static float dot(const vec3 &a, const vec3 &b);
-	static vec3 cross(const vec3 &a, const vec3 &b);
 
 	// CONSTANTS DECLARATION
 	static const vec3 zero, one, left, right, up, down, front, back;

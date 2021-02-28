@@ -1,4 +1,3 @@
-// OPERATORS
 
 // VEC2
 
@@ -48,3 +47,23 @@ inline vec3& operator*=(vec3& v, float f) { v = v * f; return v; }
 inline vec3& operator/=(vec3& v, float f) { v = v * f; return v; }
 
 
+// VEC4
+inline vec4 operator*(vec4 a, vec4 b) { return vec4(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w); }
+inline vec4 operator/(vec4 a, vec4 b) { return vec4(a.x / b.x, a.y / b.y, a.z / b.z, a.w / b.w); }
+inline vec4 operator+(vec4 a, vec4 b) { return vec4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w); }
+inline vec4 operator-(vec4 a, vec4 b) { return vec4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w); }
+
+inline vec4 &operator*=(vec4& a, vec4 b) { a = a * b; return a; }
+inline vec4 &operator/=(vec4& a, vec4 b) { a = a * b; return a; }
+inline vec4 &operator+=(vec4& a, vec4 b) { a = a * b; return a; }
+inline vec4 &operator-=(vec4& a, vec4 b) { a = a * b; return a; }
+
+
+inline vec4 operator*(vec4 v, float f) { return vec4(v.x * f, v.y * f, v.z * f, v.w * f); }
+inline vec4 operator/(vec4 v, float f) { return vec4(v.x / f, v.y / f, v.z / f, v.w / f); }
+
+inline vec4 operator*(float f, vec4 v) { return v * f; }
+inline vec4 operator/(float f, vec4 v) { return vec4(f / v.x, f / v.y, f / v.z, f / v.w); }
+
+inline vec4& operator*=(vec4& v, float f) { v = v * f; return v; }
+inline vec4& operator/=(vec4& v, float f) { v = v * f; return v; }
