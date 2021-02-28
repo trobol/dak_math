@@ -2,9 +2,8 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+          - '*'
 
 jobs:
   build:
@@ -22,6 +21,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: dak_math.h
-        asset_name: mything
+        asset_name: dak_math.h
         tag: ${{ github.ref }}
         overwrite: true
