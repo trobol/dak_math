@@ -2,27 +2,32 @@
 // VEC2
 #ifdef __SSE__
 
+
+// multiply, div, add, sub vec2
 inline FORCE_INLINE vec2 operator*(vec2 a, vec2 b) { return _mm_mul_ps(a.v, b.v); }
 inline FORCE_INLINE vec2 operator/(vec2 a, vec2 b) { return _mm_div_ps(a.v, b.v);}
 inline FORCE_INLINE vec2 operator+(vec2 a, vec2 b) { return _mm_add_ps(a.v, b.v); }
 inline FORCE_INLINE vec2 operator-(vec2 a, vec2 b) { return _mm_sub_ps(a.v, b.v); }
 
+// operation on self and other vec2
 inline FORCE_INLINE vec2 &operator*=(vec2& a, vec2 b) { a = a * b; return a; }
 inline FORCE_INLINE vec2 &operator/=(vec2& a, vec2 b) { a = a * b; return a; }
 inline FORCE_INLINE vec2 &operator+=(vec2& a, vec2 b) { a = a * b; return a; }
 inline FORCE_INLINE vec2 &operator-=(vec2& a, vec2 b) { a = a * b; return a; }
 
-
+// vector / float and vector * float 
 inline FORCE_INLINE vec2 operator*(vec2 v, float f) { return vec2(v.x * f, v.y * f); }
 inline FORCE_INLINE vec2 operator/(vec2 v, float f) { return vec2(v.x / f, v.y / f); }
 
+// Float / vector and vector * float 
 inline FORCE_INLINE vec2 operator*(float f, vec2 v) { return vec2(v.x * f, v.y * f); }
 inline FORCE_INLINE vec2 operator/(float f, vec2 v) { return vec2(v.x / f, v.y / f); }
 
-
+// Operation on self and other float
 inline FORCE_INLINE vec2& operator*=(vec2& v, float f) { v = v * f; return v; }
 inline FORCE_INLINE vec2& operator/=(vec2& v, float f) { v = v * f; return v; }
 
+// check equalilty 
 inline FORCE_INLINE bool operator==(vec2& a, vec2& b) { 
 	__m128 vcmp = _mm_cmpeq_ps(a.v, b.v);
 	return _mm_movemask_ps(vcmp);
