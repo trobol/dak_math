@@ -1,15 +1,20 @@
 // TYPE DECLARATIONS
 
+
+typedef __m128 vec_generic;
+
 struct vec2 {
 	union
 	{
 		struct { float x, y; };
-		__m128 v;
+		vec_generic v;
 	};
+
+	FORCE_INLINE operator vec_generic() { return v; }
 	vec2() : x{0}, y{0} {}
 	vec2(float f) : x{f}, y{f} {}
 	vec2(float x, float y) : x{x}, y{y} {}
-	vec2(__m128 v) : v{v} {}
+	vec2(vec_generic v) : v{v} {}
 	
 };
 
@@ -18,20 +23,27 @@ struct vec3
 {
 	union {
 		struct { float x, y, z; };
-		__m128 v;
+		vec_generic v;
 	};
-	vec3();
-	vec3(float x, float y, float z);
-	vec3(__m128 v);
+
+	FORCE_INLINE operator vec_generic() { return v; }
+
+	FORCE_INLINE vec3() : x{0}, y{0}, z{0} {}
+	FORCE_INLINE vec3(float x, float y, float z) : x{x}, y{y}, z{z} { };
+	FORCE_INLINE vec3(vec_generic v) : v{v} {};
 };
 
 struct vec4 {
 	union {
 		struct { float x, y, z, w; };
-		__m128 v;
+		vec_generic v;
 	};
+
+	FORCE_INLINE operator vec_generic() { return v; }
+
 	vec4() : x{0}, y{0}, z{0}, w{0} {}
 	vec4(float f) : x{f}, y{f}, z{f}, w{f} {}
+	vec4(vec_generic v) : v{v} {}
 	vec4(float x, float y, float z, float w) : x{x}, y{y}, z{z}, w{w} {}
 
 	vec4(vec3 xyz, float w) : vec4{xyz.x, xyz.y, xyz.z, w} {}

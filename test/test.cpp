@@ -24,13 +24,19 @@ bool equality_test() {
 	return a == b;
 }
 
+float dot_test() {
+	return dot(a, b);
+}
 vec3 mul_test() {
 	return a * b;
 }
 
 int main() {
 
-	vec3 c = constructor_test();
+	volatile vec3 c = constructor_test();
+
+	volatile float f = dot_test();
+
 	return equality_test();
 }
 

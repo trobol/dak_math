@@ -32,9 +32,6 @@ inline FORCE_INLINE bool operator==(vec2& a, vec2& b) {
 
 // VEC3
 
-inline FORCE_INLINE vec3::vec3() : x{0}, y{0}, z{0} {}
-inline FORCE_INLINE vec3::vec3(float x, float y, float z) : x{x}, y{y}, z{z} { };
-inline FORCE_INLINE vec3::vec3(__m128 v) : v{v} {};
 
 inline FORCE_INLINE vec3 operator*(vec3 a, vec3 b) { return _mm_mul_ps(a.v, b.v); }
 inline FORCE_INLINE vec3 operator/(vec3 a, vec3 b) { return vec3(a.x / b.x, a.y / b.y, a.z / b.z); }
