@@ -1,3 +1,6 @@
 dak_math.*
 *.out
 *.s
+
+.vscode/*
+.vscode
