@@ -1,3 +1,20 @@
+#include <cmath>
+#include <nmmintrin.h> // for SSE4.2
+#include <immintrin.h> // for AVX
+#include <xmmintrin.h>
+
+#ifdef __GNUC__
+#pragma GCC push_options
+#pragma GCC optimize ("-O2")
+#define ALLOW_FORCE_INLINE 1
+#endif
+
+#ifdef ALLOW_FORCE_INLINE
+#define FORCE_INLINE __attribute__((always_inline)) 
+#else
+#define FORCE_INLINE
+#endif
+
 #define VEC2_ZERO   vec2( 0, 0)
 #define VEC2_ONE    vec2( 1, 1)
 #define VEC2_LEFT   vec2(-1, 0)

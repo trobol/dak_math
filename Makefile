@@ -18,7 +18,7 @@ $(LICENSE)									\1
 #define _DAK_MATH_H							\1
 endef
 
-build: head types.h constants.h operators.h functions.h tail
+build: head constants.h types.h operators.h functions.h tail
 
 HEAD_INFO_ENCODED := $(shell echo "$(HEAD_INFO)" |  tr '\n' '\1')
 head:
@@ -32,7 +32,13 @@ tail:
 
 
 check: build
-	g++ -std=c++11 -Werror test/test.cpp test/linker.cpp
+	g++ -std=c++11 -Werror -S test/test.cpp
 
+asm: build
+	g++ -std=c++11 -fno-dwarf2-cfi-asm -fno-asynchronous-unwind-tables -S -masm=intel test/test.cpp 
+	cat test.s | c++filt > out.s
 clean: 
-	rm dak_math.h dak_math.h.gch a.out
+	rm dak_math.h dak_math.h.gch a.out test.s out.s
+
+report: build
+	stat --printf="%s" dak_math.h

@@ -1,29 +1,35 @@
 // TYPE DECLARATIONS
-#include <cmath>
 
 struct vec2 {
-	float x, y;
+	union
+	{
+		struct { float x, y; };
+		__m128 v;
+	};
 	vec2() : x{0}, y{0} {}
 	vec2(float f) : x{f}, y{f} {}
 	vec2(float x, float y) : x{x}, y{y} {}
+	vec2(__m128 v) : v{v} {}
 	
-
-	static const vec2 zero, one, left, right, up, down;
 };
 
 
 struct vec3
 {
-	float x, y, z;
-	vec3() : x{0}, y{0}, z{0} {}
-	vec3(float x, float y, float z) : x{x}, y{y}, z{z} {};
-
-	// CONSTANTS DECLARATION
-	static const vec3 zero, one, left, right, up, down, front, back;
+	union {
+		struct { float x, y, z; };
+		__m128 v;
+	};
+	vec3();
+	vec3(float x, float y, float z);
+	vec3(__m128 v);
 };
 
 struct vec4 {
-	float x, y, z, w;
+	union {
+		struct { float x, y, z, w; };
+		__m128 v;
+	};
 	vec4() : x{0}, y{0}, z{0}, w{0} {}
 	vec4(float f) : x{f}, y{f}, z{f}, w{f} {}
 	vec4(float x, float y, float z, float w) : x{x}, y{y}, z{z}, w{w} {}
@@ -35,6 +41,5 @@ struct vec4 {
 	vec4(float x, vec2 yz, float w) : vec4{x, yz.x, yz.y, w} {}
 	vec4(float x, float y, vec2 zw) : vec4{x, y, zw.x, zw.y} {}
 
-	static const vec4 identity;
 };
 
