@@ -31,11 +31,17 @@ vec3 mul_test() {
 	return a * b;
 }
 
+vec3 cross_test() {
+	return cross(a, b);
+}
+
 int main() {
 
 	volatile vec3 c = constructor_test();
 
 	volatile float f = dot_test();
+
+	volatile vec3 d = cross_test();
 
 	return equality_test();
 }

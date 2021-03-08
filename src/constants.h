@@ -15,6 +15,9 @@
 #define FORCE_INLINE
 #endif
 
+// dak math function properties
+#define DM_FUNC_PROP inline FORCE_INLINE
+
 #define VEC2_ZERO   vec2( 0, 0)
 #define VEC2_ONE    vec2( 1, 1)
 #define VEC2_LEFT   vec2(-1, 0)
