@@ -3,20 +3,17 @@
 #include <immintrin.h> // for AVX
 #include <xmmintrin.h>
 
-#ifdef __GNUC__
+#if defined(__GNUC__)
 #pragma GCC push_options
 #pragma GCC optimize ("-O2")
-#define ALLOW_FORCE_INLINE 1
-#endif
-
-#ifdef ALLOW_FORCE_INLINE
-#define FORCE_INLINE __attribute__((always_inline)) 
-#else
-#define FORCE_INLINE
-#endif
-
 // dak math function properties
-#define DM_FUNC_PROP inline FORCE_INLINE
+#define DM_FUNC_PROP inline __attribute__((always_inline)) 
+
+#elif defined(_MSC_VER)
+
+#define DM_FUNC_PROP #pragma optimization_level 3 inline 
+#endif
+
 
 #define VEC2_ZERO   vec2( 0, 0)
 #define VEC2_ONE    vec2( 1, 1)
