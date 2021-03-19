@@ -26,13 +26,13 @@ set HEAD_INFO2=*/!NL!#ifndef _DAK_MATH_H!NL!#define _DAK_MATH_H
 
 set tail=#endif 
 
-
+REM add contsnts to file 
 REM HEAD
 	echo !HEAD_INFO1!>%output%
 	for /F delims^=^ eol^= %%i in (%LICENSE_LOC%) do echo %%i>>%output%
 	echo !HEAD_INFO2!!NL!>>%output% 
 
-
+REM contents
 type .\src\constants.h >> %output%
 
 type .\src\types.h >> %output%
@@ -41,8 +41,11 @@ type .\src\operators.h >> %output%
 
 type .\src\functions.h >> %output%
 
-
+REM tail
 echo !NL!%tail% >> %output%
+
+
+REM check what MSVC version is installed
 
 set installed = 0
 
@@ -87,6 +90,7 @@ if %ERRORLEVEL% NEQ 0 (
 		echo if you find it please put it here
 		echo https://github.com/trobol/dak_math
 		REM call "C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC\vcvarsall.bat" x86_amd64
+		pause
 		set installed=1
 
 	) 
@@ -99,12 +103,8 @@ if %ERRORLEVEL% NEQ 0 (
 
 ) 
 
-
+REM If msvc installed build file
 if %installed%==1 (
-pause
-cd /d %~dp0
-pause
-cl /Tp %output% test\test.cpp 
-pause
-
+	cd /d %~dp0
+	cl /Tp %output% test\test.cpp 
 )
