@@ -91,6 +91,8 @@ inline vec3 operator/(vec3 v, float f) { return vec3(v.x / f, v.y / f, v.z / f);
 inline vec3 operator*(float f, vec3 v) { return vec3(v.x * f, v.y * f, v.z * f); }
 inline vec3 operator/(float f, vec3 v) { return vec3(v.x / f, v.y / f, v.z / f); }
 
+DM_FUNC_PROP bool operator==(vec3 a, vec3 b) { return a.x == b.x && a.y == b.y && a.z == b.z; }
+
 _VEC_ASSIGN_OPERATORS(vec3)
 
 // VEC4
@@ -105,6 +107,8 @@ inline vec4 operator/(vec4 v, float f) { return vec4(v.x / f, v.y / f, v.z / f, 
 
 inline vec4 operator*(float f, vec4 v) { return v * f; }
 inline vec4 operator/(float f, vec4 v) { return vec4(f / v.x, f / v.y, f / v.z, f / v.w); }
+
+
 
 
 _VEC_ASSIGN_OPERATORS(vec4)
