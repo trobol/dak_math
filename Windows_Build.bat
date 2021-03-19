@@ -1,3 +1,5 @@
+REM made by Alexnader Waters
+
 @echo off
 
 SETLOCAL EnableDelayedExpansion
