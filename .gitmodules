@@ -1,0 +1,3 @@
+[submodule "profile_data"]
+	path = profile_data
+	url = https://wak-lang:d8fc37437f29ef19b71b1f90cbde8fe9d12d2b6a@github.com/trobol/dak_math_profile

@@ -35,13 +35,14 @@ REM HEAD
 
 type .\src\constants.h >> %output%
 
-type .\src\functions.h >> %output%
+type .\src\types.h >> %output%
 
 type .\src\operators.h >> %output%
 
-type .\src\types.h >> %output%
+type .\src\functions.h >> %output%
 
-echo %tail% >> %output%
+
+echo !NL!%tail% >> %output%
 
 set installed = 0
 
