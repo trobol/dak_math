@@ -25,7 +25,7 @@ struct vec3
 		vec_generic v;
 	};
 
-	FORCE_INLINE operator vec_generic() { return v; }
+	DM_FUNC_PROP operator vec_generic() { return v; }
 
 	vec3();
 	vec3(float f);
@@ -41,7 +41,7 @@ struct vec4 {
 		vec_generic v;
 	};
 
-	FORCE_INLINE operator vec_generic() { return v; }
+	DM_FUNC_PROP operator vec_generic() { return v; }
 
 	vec4();
 	vec4(float f);
