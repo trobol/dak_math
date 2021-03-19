@@ -11,7 +11,7 @@
 
 #elif defined(_MSC_VER)
 
-#define DM_FUNC_PROP #pragma optimization_level 3 inline 
+#define DM_FUNC_PROP inline 
 #endif
 
 
