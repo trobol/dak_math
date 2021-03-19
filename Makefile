@@ -23,6 +23,7 @@ build: head constants.h types.h operators.h functions.h tail
 HEAD_INFO_ENCODED := $(shell echo "$(HEAD_INFO)" |  tr '\n' '\1')
 head:
 	@echo "$(HEAD_INFO_ENCODED)" | tr '\1' '\n' > $(output)
+
 tail:
 	@echo "\n#endif" >> $(output)
 
@@ -32,7 +33,7 @@ tail:
 
 
 check: build
-	g++ -std=c++11 -Werror -S test/test.cpp
+	g++ -O3 -std=c++11 -ggdb -g -Werror test/test.cpp
 
 asm: build
 	g++ -std=c++11 -fno-dwarf2-cfi-asm -fno-asynchronous-unwind-tables -S -masm=intel test/test.cpp 

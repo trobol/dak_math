@@ -1,19 +1,11 @@
+#include <ctime>
+#include <cstdio>
+#include <cstdlib>
 
 #include "../dak_math.h"
-vec3 a = vec3(1, 1, 1), b(5, 3, 2);
+#include "test.h"
+
 /*
-
-TEST_CASE( "equality", "[vec3]" ) {
-	REQUIRE( vec3(0, 0, 0) == vec3(0, 0, 0) );
-	REQUIRE( vec3(0, 3, 1) == vec3(0, 3, 1) );
-	REQUIRE( vec3(5,-3, 1) == vec3(5,-3, 0) );
-
-	BENCHMARK("equality") {
-		return vec3(1, 1, 1) === vec3(1, 1, 1);
-	};
-}
-
-*/
 
 vec3 constructor_test() {
 	vec3 c(1, 4, 5);
@@ -35,14 +27,60 @@ vec3 cross_test() {
 	return cross(a, b);
 }
 
-int main() {
+*/
 
-	volatile vec3 c = constructor_test();
 
-	volatile float f = dot_test();
 
-	volatile vec3 d = cross_test();
+float* float_data;
+vec2* vec2_data;
+vec3* vec3_data;
+vec4* vec4_data;
 
-	return equality_test();
-}
+TEST_START
 
+
+	float_data = new float[ITERATIONS*4];
+	for(volatile size_t i = 0; i < ITERATIONS; i++) {
+		float_data[i] = rand() / RAND_MAX;
+	}
+
+	vec2_data = new vec2[ITERATIONS];
+	vec3_data = new vec3[ITERATIONS];
+	vec4_data = new vec4[ITERATIONS];
+
+
+TEST_LOOP_START
+	DEFINE_TEST(VEC2_CONSTR_MEM_1F) {
+		float* f = float_data + (test_index*4);
+		vec2_data[test_index] = vec2(f[0], f[1]);
+	}
+	DEFINE_TEST(VEC2_CONSTR_MEM_2F) {
+		float* f = float_data + (test_index*4);
+		vec2_data[test_index] = vec2(f[0]);
+	}
+
+	DEFINE_TEST(VEC3_CONSTRU_MEM_1F) {
+		float* f = float_data + (test_index*4);
+		vec3_data[test_index] = vec3(f[0]);
+	}
+	DEFINE_TEST(VEC3_CONSTR_MEM_3F) {
+		float* f = float_data + (test_index*4);
+		vec3_data[test_index] = vec3(f[0], f[1], f[2]);
+	}
+	DEFINE_TEST(VEC3_CONSTR_MEM_1F_2F) {
+		float* f = float_data + (test_index*4);
+		vec3_data[test_index] = vec3(f[0], vec2_data[test_index]);
+	}
+	DEFINE_TEST(VEC3_CONSTR_MEM_2F_1F) {
+		float* f = float_data + (test_index*4);
+		vec3_data[test_index] = vec3(vec2_data[test_index], f[0]);
+	}
+TEST_LOOP_END
+
+	
+	delete float_data;
+	delete vec2_data;
+	delete vec3_data;
+	delete vec4_data;
+
+TEST_END
