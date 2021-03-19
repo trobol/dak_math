@@ -11,7 +11,11 @@
 
 #elif defined(_MSC_VER)
 
-#define DM_FUNC_PROP inline 
+#define DM_FUNC_PROP \
+	_Pragma("optimize(\"g\", on)") \
+	inline
+
+
 #endif
 
 
