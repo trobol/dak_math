@@ -7,3 +7,5 @@ dak_math.*
 
 .vs
 .vs/*
+
+*.obj
