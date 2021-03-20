@@ -1,3 +1,11 @@
 dak_math.*
 *.out
 *.s
+
+.vscode/*
+.vscode
+
+.vs
+.vs/*
+
+*.obj
