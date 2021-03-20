@@ -50,13 +50,14 @@ TEST_START
 
 
 TEST_LOOP_START
+	// constructors 
 	DEFINE_TEST(VEC2_CONSTR_MEM_1F) {
 		float* f = float_data + (test_index*4);
-		vec2_data[test_index] = vec2(f[0], f[1]);
+		vec2_data[test_index] = vec2(f[0]);
 	}
 	DEFINE_TEST(VEC2_CONSTR_MEM_2F) {
 		float* f = float_data + (test_index*4);
-		vec2_data[test_index] = vec2(f[0]);
+		vec2_data[test_index] = vec2(f[0], f[1]);
 	}
 
 	DEFINE_TEST(VEC3_CONSTRU_MEM_1F) {
@@ -75,6 +76,51 @@ TEST_LOOP_START
 		float* f = float_data + (test_index*4);
 		vec3_data[test_index] = vec3(vec2_data[test_index], f[0]);
 	}
+
+
+	DEFINE_TEST(VEC4_CONSTRU_MEM_1F) {
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(f[0]);
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_4F) {
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(f[0], f[1], f[2], f[3]);
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_2F_2F) {	
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(vec2_data[test_index], vec2_data[test_index]); //consider changing 
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_2F_1F_1F) {	
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(vec2_data[test_index], f[0], f[1]); 
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_1F_2F_1F) {	
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(f[0], vec2_data[test_index], f[1]); 
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_1F_1F_2F) {	
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(f[0], f[1], vec2_data[test_index]); 
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_3F_1F) {
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(vec3_data[test_index], f[0]);
+	}
+	DEFINE_TEST(VEC4_CONSTR_MEM_1F_3F) {
+		float* f = float_data + (test_index*4);
+		vec4_data[test_index] = vec4(f[0], vec3_data[test_index]);
+	}
+	
+	//Vec 2 Opperations
+
+
+	/*DEFINE_TEST(VEC2_MULT_VEC2) {
+		float* f = float_data + (test_index*4);
+		vec3_data[test_index] = vec3(vec2_data[test_index], f[0]);
+	}*/
+	
+
+
 TEST_LOOP_END
 
 	
