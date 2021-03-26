@@ -9,3 +9,7 @@ dak_math.*
 .vs/*
 
 *.obj
+
+./test/results/*
+./test/results/test-results/*
+test/results/test-results/*

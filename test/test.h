@@ -1,6 +1,8 @@
 #include <ctime>
 #include <cstdio>
 #include <cstdlib>
+#include <string>
+#include <fstream>
 
 #define ITERATIONS 100000000
 
@@ -50,21 +52,24 @@ test_index = 0; \
 const size_t runs_per_test = ITERATIONS; \
 clock_t tests_time_start = clock();
 
-#define TEST_LOOP_END \
-clock_t tests_time_end = clock(); \
-clock_t tests_time_total = tests_time_end - tests_time_start; \
-printf("finished %i tests in %fs\n", test_index, (double)tests_time_total / CLOCKS_PER_SEC); \
-}
-
-#define TEST_END \
-print_test_results(test_index); \
-}
 
 #define DEFINE_TEST(name) \
 test_register(#name, test_index++); \
 clock_t test_start_##name = clock(); \
 for (size_t i = 0; i < ITERATIONS || (test_end( test_index, test_iteration, test_start_##name ), false); i++)
 
+
+
+#define TEST_LOOP_END \
+clock_t tests_time_end = clock(); \
+clock_t tests_time_total = tests_time_end - tests_time_start; \
+printf("finished %i tests in %fs\n", test_index, (double)tests_time_total / CLOCKS_PER_SEC); \
+}
+
+
+#define TEST_END \
+print_test_results(test_index); \
+}
 
 
 void print_test_results(size_t test_count) {
@@ -81,5 +86,39 @@ void print_test_results(size_t test_count) {
 
 		average /= TEST_REPEAT;
 		printf("%s avg: %fs min: %fs max: %fs\n", tests_names[i], (double)average / CLOCKS_PER_SEC, (double)min / CLOCKS_PER_SEC, (double)max / CLOCKS_PER_SEC);
+	}
+}
+
+
+#define SAVE_RESULTS \
+save_test_results(test_index); 
+
+
+
+void save_test_results(size_t test_count) {
+	std::ofstream file;
+
+  	file.open ("./test/results/test-results/wasd-date-time.csv");
+	if (file.is_open()) {
+		file << "TestName,Avg,Min,Max\n";
+		
+		for (size_t i = 0; i < test_count; i++) {
+			clock_t average = 0;
+			clock_t max = 0;
+			clock_t min = 1000000000;
+			for (size_t j = 0; j < TEST_REPEAT; j++) {
+				clock_t c = tests_times[i][j];
+				average += c;
+				max = c > max ? c : max;
+				min = c < min ? c : min;
+			}
+
+			average /= TEST_REPEAT;
+			file << tests_names[i] << "," << (double)average / CLOCKS_PER_SEC << "," << (double)min / CLOCKS_PER_SEC << "," << (double)max / CLOCKS_PER_SEC << "\n";
+		}
+		
+		file.close();
+	}else{
+		printf("unable to open file\n");
 	}
 }

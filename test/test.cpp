@@ -77,7 +77,7 @@ TEST_LOOP_START
 		vec3_data[test_index] = vec3(vec2_data[test_index], f[0]);
 	}
 
-
+	/*
 	DEFINE_TEST(VEC4_CONSTRU_MEM_1F) {
 		float* f = float_data + (test_index*4);
 		vec4_data[test_index] = vec4(f[0]);
@@ -109,7 +109,7 @@ TEST_LOOP_START
 	DEFINE_TEST(VEC4_CONSTR_MEM_1F_3F) {
 		float* f = float_data + (test_index*4);
 		vec4_data[test_index] = vec4(f[0], vec3_data[test_index]);
-	}
+	}*/
 	
 	//Vec 2 Opperations
 
@@ -129,4 +129,9 @@ TEST_LOOP_END
 	delete vec3_data;
 	delete vec4_data;
 
+SAVE_RESULTS
+
 TEST_END
+
+
+
